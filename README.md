@@ -10,10 +10,11 @@ The interesting external methods are
 
 So simple uses would be something like
 
-   import spelchek
-   
-   print spelchek.correct('eaxmple')
-   # 'example'
+
+    import spelchek
+    print spelchek.correct('eaxmple')
+    # 'example'
+  
    
 # caveat
 This is a quickie hack, because it does not use a real statistical analysis to spice the guesses! The 'right' thing to do is to make a real game-development wordlist corpus by dumping some relevant text to a huge file and word-counting it (the original example linked above contains the code, I baked it in here to cut down on load times).  This really just looks for tokens in the word list using Peter's original transposition and deletion guesses, with a mild priority boost to nouns relative to verbs and adjectives. However the 'right' Bayesian thing to do is to have much more fine-grained prioritization of common words.
