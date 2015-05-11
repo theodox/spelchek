@@ -7,6 +7,7 @@ The interesting external methods are
    * `known()` filters a list of words and returns only those in the dictionary,
    * `correct()` returns the best guess for the supplied word
    * `guesses()` returns all guesses for the supplied word
+   * `add()` adds a word to the dictionary, with an optional priority value
 
 So simple uses would be something like
 
