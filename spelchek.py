@@ -40,14 +40,14 @@ def edits1(word):
 
 def known_edits2(word):
     "return second-order candidates"
-    return set(e2 for e1 in edits1(word) for e2 in edits1(e1) if e2 in NWORDS)
+    return set(e2 for e1 in edits1(word) for e2 in edits1(e1) if e2 in _DICTIONARY)
 
 
 def known(*words):
     """
     Return all the words in *words which are in the dictionary
     """
-    return set(w for w in words if w in NWORDS)
+    return set(w for w in words if w in _DICTIONARY)
 
 
 def correct(word):
@@ -56,7 +56,7 @@ def correct(word):
     returns the original word, so don't assume its always right!
     """
     candidates = known(word) or known(*edits1(word)) or known_edits2(word) or [word]
-    return max(candidates, key=NWORDS.get)
+    return max(candidates, key=_DICTIONARY.get)
 
 
 def guesses(word):
@@ -67,6 +67,14 @@ def guesses(word):
     result.sort()
     return result
 
+
+def add(word, priority=4):
+    """
+    Adds <word> to the dictionary with the specified priority (default is 4).
+
+    IMPORTANT NOTE: this is temporary! The addition is not saved to disk, so it won't persist between loads!
+    """
+
 # this is the bayes dictionary
 # I've added a few production friendly words to a small Aspell list:
 # http://app.aspell.net/create
@@ -76,7 +84,7 @@ def guesses(word):
 # to catch terms of art.
 # however we'd also need to pre-check it for typos!
 
-_WORDLIST = {
+_BAKED_WORDLIST = {
     'abilities': 4,
     'ability': 3,
     'able': 4,
@@ -1555,6 +1563,7 @@ _WORDLIST = {
     'fourth': 4,
     'fraction': 4,
     'frame': 4,
+    'frames': 3,
     'free': 4,
     'freedom': 4,
     'freely': 3,
@@ -2014,6 +2023,10 @@ _WORDLIST = {
     'key': 3,
     'keyboard': 4,
     'keys': 4,
+    'keyed': 3,
+    'keyframe': 4,
+    'keyframes': 3,
+    'keyframed': 3,
     'kid': 4,
     'kill': 4,
     'killed': 3,
@@ -3891,6 +3904,8 @@ _WORDLIST = {
     'vast': 4,
     'vastly': 3,
     'vector': 4,
+    'vehicle': 4,
+    'vehicles': 3,
     'version': 4,
     'versions': 4,
     'very': 3,
@@ -3944,6 +3959,7 @@ _WORDLIST = {
     'ways': 4,
     'we': 4,
     'weapon': 4,
+    'weapons': 3,
     'wear': 4,
     'wearing': 3,
     'wears': 4,
@@ -4066,7 +4082,7 @@ _WORDLIST = {
     'zero': 4
 }
 
-NWORDS = collections.defaultdict(lambda p: 1, _WORDLIST)
+_DICTIONARY = collections.defaultdict(lambda p: 1, _BAKED_WORDLIST)
 
 # delete the redundant one
-del (_WORDLIST)
+del (_BAKED_WORDLIST)
