@@ -68,12 +68,14 @@ def guesses(word):
     return result
 
 
+
 def add(word, priority=4):
     """
     Adds <word> to the dictionary with the specified priority (default is 4).
 
     IMPORTANT NOTE: this is temporary! The addition is not saved to disk, so it won't persist between loads!
     """
+    _DICTIONARY[word.lower().strip()] = priority
 
 # this is the bayes dictionary
 # I've added a few production friendly words to a small Aspell list:
