@@ -67,6 +67,7 @@ def guesses(word):
     return result
 
 
+
 def add(word, priority=4):
     """
     Adds <word> to the dictionary with the specified priority (default is 4).
