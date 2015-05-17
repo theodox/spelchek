@@ -1,5 +1,6 @@
 """
 spelchek
+--------
 
 A cheap-ass, pure-python spellchecker based on Peter Norvig's python bayes demo at http://norvig.com/spell-correct.html
 
@@ -18,11 +19,18 @@ the original word unchanged if it finds no candidates!
 
 Installation
 ============
-the module is a single file python module with no binary dependencies. You do, however, need to keep the `corpus.txt` file in the same location as `spelchek.py`.
+the module is a single file python module with no binary dependencies. You do, however, need to keep the `corpus.txt`
+file in the same location as `spelchek.py`.
 
 You can extend the built in dictionary in two ways.
-1. You can add words to the corpus.txt file; its's a plain text file with words and frequency scores separated by a comma.  High frequency scores make a word more likely to be suggested as a correction, where low frequencies are 'rarer' and so less likely to be suggested.
-2. You can add a custom dictionary of your own using the same <word>,<score> format and point to it be setting an envrionment variable called SPELCHEK.
+
+1. You can add words to the corpus.txt file; its's a plain text file with words and frequency scores separated by a
+   comma.  High frequency scores make a word more likely to be suggested as a correction, where low frequencies are
+   'rarer' and so less likely to be suggested.
+
+2. You can add a custom dictionary of your own using the same <word>,<score> format and point to it be setting an
+   environment variable called SPELCHEK.
+
 """
 __author__ = 'stevet'
 
@@ -37,6 +45,7 @@ _ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 # everything else is cadged together from random word list sources with an arbitrary values of 4 for
 # 'ordinary' and 3 for 'plurals, adjectives, and participials'
 _DICTIONARY = {}
+
 
 def update_dictionary(corpus):
     """
@@ -91,7 +100,6 @@ def guesses(word):
     result = list(known(*first_order_variants(word)))
     result.sort()
     return result
-
 
 
 def add(word, priority=4):
