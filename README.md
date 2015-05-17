@@ -1,6 +1,7 @@
-#spelchek
+spelchek
+----------
 
-A cheap-ass, pure-python spellchecker based on [Peter Norvig's Python Bayes demo](http://norvig.com/spell-correct.html)
+A cheap-ass, pure-python spellchecker based on [Peter Norvig's Python Bayes demo](http://norvig.com/spell-correct.html) All the interesting work is his.
 
 The interesting external methods are
 
@@ -11,11 +12,21 @@ The interesting external methods are
 
 So simple uses would be something like
 
-
     import spelchek
     print spelchek.correct('eaxmple')
     # 'example'
-  
+
+The current corpus of words includes about 75,000 entries. It does not include punction such as hyphens, apostrophes or spaces.  The module also supports optional user-supplied dictionaries, see the documentation of `spelchek.py` for details.
    
-# caveat
-This is a quickie hack, because it does not use a real statistical analysis to spice the guesses! The 'right' thing to do is to make a real game-development wordlist corpus by dumping some relevant text to a huge file and word-counting it (the original example linked above contains the code, I baked it in here to cut down on load times).  This really just looks for tokens in the word list using Peter's original transposition and deletion guesses, with a mild priority boost to nouns relative to verbs and adjectives. However the 'right' Bayesian thing to do is to have much more fine-grained prioritization of common words.
+#Important Caveat
+========
+The heart of a spell checker is the dictionary, and the dictionary here is cadged together out of a bunch of free online sources.  No really effort has been made to check it for accuracy, and although it's trivially correct with several tens of thousands of words involved errors are pretty much inevitable (if you find one, feel free to submit a pull request and I'll update `corpus.txt` as needed).
+
+Installation
+============
+the module is a single file python module with no binary dependencies. You do, however, need to keep the `corpus.txt` file in the same location as `spelchek.py`.
+
+You can extend the built in dictionary in two ways.
+
+1. You can add words to the corpus.txt file; its's a plain text file with words and frequency scores separated by a comma.  High frequency scores make a word more likely to be suggested as a correction, where low frequencies are 'rarer' and so less likely to be suggested.
+2. You can add a custom dictionary of your own using the same <word>,<score> format and point to it be setting an envrionment variable called SPELCHEK.
