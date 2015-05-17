@@ -20,7 +20,7 @@ The current corpus of words includes about 75,000 entries. It does not include p
    
 #Important Caveat
 ========
-The heart of a spell checker is the dictionary, and the dictionary here is cadged together out of a bunch of free online sources.  No really effort has been made to check it for accuracy, and although it's trivially correct with several tens of thousands of words involved errors are pretty much inevitable (if you find one, feel free to submit a pull request and I'll update `corpus.txt` as needed).
+The heart of a spell checker is the dictionary, and the dictionary here is cadged together out of a bunch of free online sources.  No real effort has been made to check it for accuracy, and although it's trivially correct with several tens of thousands of words involved errors are pretty much inevitable (if you find one, feel free to submit a pull request and I'll update `corpus.txt` as needed).
 
 Installation
 ============
