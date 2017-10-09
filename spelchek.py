@@ -36,6 +36,7 @@ __author__ = 'stevet'
 
 import os
 import pkgutil
+import sys
 import warnings
 
 _ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
@@ -115,7 +116,11 @@ def add(word, priority=4):
 # import time initializations
 #
 # the dictionary is populated on module import with the context of corpus.txt in this package
-_corpus = (i for i in pkgutil.get_data("spelchek", "corpus.txt").splitlines())
+if sys.version_info.major >= 3:
+    _corpus = (i.decode("utf-8") for i in pkgutil.get_data("spelchek", "corpus.txt").splitlines())
+else:
+    _corpus = (i for i in pkgutil.get_data("spelchek", "corpus.txt").splitlines())
+
 update_dictionary(_corpus)
 del _corpus
 
