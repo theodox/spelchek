@@ -13,7 +13,7 @@ else:
 
 
 setup(name='spelchek',
-      version='0.52',
+      version='0.54',
       description='A pure-python Bayesian spellchecker',
       long_description=long_description,
       url='https://github.com/theodox/spelchek',
